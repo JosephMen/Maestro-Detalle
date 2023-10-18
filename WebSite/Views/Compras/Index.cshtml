@@ -1,0 +1,53 @@
+﻿@using DAL.Models;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<Compra>
+@{
+    ViewData["Title"] = "Compras";
+}
+
+<div class="card">
+    <div class="card-header">
+        Lista de Ventas
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Numero de documento</th>
+                    <th>Razon</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(Model.Count == 0)
+                {
+                    <tr>
+                        <td colspan="5">
+                            <h2>No hay registros</h2>
+                        </td>
+                    </tr>
+                }else{
+                    @foreach (var compra in Model)
+                    {
+                        <tr>
+                            <td>@compra.Id</td>
+                            <td>@compra.NumeroDocumento</td>
+                            <td>@compra.Razon</td>
+                            <td>@compra.Total</td>
+                            <td>
+                                @*@Html.ActionLink("","")*@
+                                <a class="btn btn-primary btn-sm" asp-controller="DetalleCompra" asp-action="Index" asp-route-idCompra="@compra.Id">Ver detalle</a>
+                                <a class="btn btn-info btn-sm" asp-controller="Compras" asp-action="Edit" asp-route-id="@compra.Id">Editar</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

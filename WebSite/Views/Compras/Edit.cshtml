@@ -1,0 +1,47 @@
+﻿@using DAL.Models;
+@model Compra;
+@{
+    ViewData["Title"] = "Editar";
+}
+
+@if (@ViewBag.MostrarMensaje)
+{
+    if (@ViewBag.Actualizado)
+    {
+        <div>
+            <h2>Se ha actualizado</h2>
+        </div>
+    }
+    else
+    {
+        <div>
+            <h2>Error al actualizar</h2>
+        </div>
+    }
+
+}
+<div class="card">
+    <div class="card-header">
+        Editar Compra
+    </div>
+    <div class="card-body">
+        <form asp-action="Edit" asp-controller="Compras" method="post">
+            <input asp-for="Id" hidden/>
+            <div class="mb-2">
+                <label for="NumeroDocumento" class="form-label">Numero de Documento:</label>
+                <input class="form-control form-control-sm" asp-for="NumeroDocumento" id="NumeroDocumento"/>
+            </div>
+            <div class="mb-2">
+                <label for="Razon" class="form-label">Razon: </label>
+                <input class="form-control form-control-sm" asp-for="Razon" id="Razon" />
+            </div>
+            <br />
+            <button type="submit" class="btn btn-success btn-sm">Guardar Cambios</button>
+            <a asp-controller="Compras" asp-action="Index" class="btn btn-warning btn-sm">Volver</a>
+        </form>
+    </div>
+</div>
+
+<script>
+    alertify.alert("Ha sido un exito")
+</script>
